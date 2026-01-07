@@ -1,8 +1,8 @@
 "use client";
 
-import { createContext, useContext, ReactNode } from "react";
+import { createContext, useContext, ReactNode, useState, useEffect } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-
+import { Spinner } from "@/components/ui/spinner";
 export interface UserProfile {
   username: string;
   jobTitle: string;
@@ -17,10 +17,20 @@ interface UserContextType {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function UserProvider({ children }: { children: ReactNode }) {
+  const [initialized, setInitialized] = useState(false);
   const [profile, setProfile] = useLocalStorage<UserProfile>("user-profile", {
     username: "",
     jobTitle: "",
   });
+
+  // wait for client-side hydration to check localStorage, show a spinner meanwhile
+  useEffect(() => {
+    setInitialized(true);
+  }, []);
+
+  if (!initialized) {
+    return <div className="flex items-center justify-center h-full"><Spinner className="size-8" /></div>;
+  }
 
   const isComplete = Boolean(profile.username && profile.jobTitle);
 

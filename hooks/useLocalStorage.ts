@@ -4,7 +4,10 @@ type SetValue<T> = (value: T | ((prev: T) => T)) => void;
 
 export function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
   const getStoredValue = useCallback((): T => {
-    if (typeof window === "undefined") return initialValue;
+    if (typeof window === "undefined") {
+      return initialValue;
+    }
+    
     try {
       const item = window.localStorage.getItem(key);
       return item ? (JSON.parse(item) as T) : initialValue;
