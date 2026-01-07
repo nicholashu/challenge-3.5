@@ -54,7 +54,7 @@ export default function ProfileForm({ onSubmit, onCancel, submitLabel }: Props) 
           />
         </Field>
 
-        <Field orientation="horizontal">
+        <Field orientation="horizontal" className="mt-4 gap-4">
           <Button type="submit" className="flex-1">
             {submitLabel || "Continue"}
           </Button>

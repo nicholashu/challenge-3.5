@@ -11,12 +11,12 @@ export default function ProfileBlock() {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <div className="flex h-full w-full items-center justify-center bg-white">
-      <div className="flex max-w-lg w-full flex-col justify-center p-8 gap-7">
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="flex max-w-lg w-full flex-col justify-center p-8 gap-4 bg-white">
         {isEditing ? (
           <>
-            <h2 className="text-2xl font-semibold mb-2">Edit Profile</h2>
-            <p className="text-zinc-600 mb-6">
+            <h2 className="text-2xl font-semibold">Edit Profile</h2>
+            <p className="text-zinc-600">
               Update your information below
             </p>
             <ProfileForm
@@ -27,14 +27,14 @@ export default function ProfileBlock() {
           </>
         ) : (
           <>
-            <h1 className="text-2xl font-semibold mb-6">Profile</h1>
+            <h1 className="text-2xl font-semibold">Profile</h1>
             <div className="space-y-4">
-              <div>
+              <div className="space-y-2">
                 <Label>Username</Label>
                 <p className="text-lg">{profile.username}</p>
               </div>
 
-              <div>
+              <div className="space-y-2">
                 <Label>Job Title</Label>
                 <p className="text-lg">{profile.jobTitle}</p>
               </div>
