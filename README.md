@@ -2,6 +2,8 @@ Next.js application with user authentication, GraphQL integration, and paginated
 
 **Challenge Version:** 3.5
 
+[Hosted on Vercel](https://nextjs-boilerplate-wine-tau-12.vercel.app/)
+
 ## Tech Stack
 
 - **Framework:** Next.js 16.1.1 (App Router)
