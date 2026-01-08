@@ -1,10 +1,10 @@
-const informationPage = () => {
-  return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">Information Page</h1>
-      <p className="text-gray-700">`This is the information page content.</p>
-    </div>
-  );
+import { fetchRickData } from "@/lib/rickAPI";
+import PageContent from "./pageContent";
+
+const informationPage = async ({ page = 1 }: { page: number }) => {
+  const initialData = await fetchRickData({ page });
+
+  return <PageContent initialData={initialData} page={page} />;
 };
 
 export default informationPage;
