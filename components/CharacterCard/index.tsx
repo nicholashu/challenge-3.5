@@ -25,7 +25,7 @@ const CharacterCard = ({ character, onClick }: CharacterCardProps) => {
       <CardHeader>
         <div className="flex items-center gap-2">
           <Avatar className="h-16 w-16">
-            <AvatarImage src={character.image} alt={character.name} />
+            <AvatarImage src={character.image} alt={character.name} loading="lazy"/>
           </Avatar>
           <CardTitle className="text-sm line-clamp-1">
             {character.name}
