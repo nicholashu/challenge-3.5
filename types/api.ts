@@ -6,6 +6,7 @@ export type RickData = {
     info: {
       __typename: string;
       count: number;
+      pages: number;
     };
     results: Character[];
   };

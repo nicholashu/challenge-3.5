@@ -11,7 +11,7 @@ type Props = {
  * by passing a page number prop back to the main information page
  */
 const PaginatedInformationPage = async ({ params }: Props) => {
-  const pageNumber = await parseInt((await params).page, 10) || 1;
+  const pageNumber = parseInt((await params).page, 10) || 1;
 
   return <BasePage page={pageNumber} />;
 };

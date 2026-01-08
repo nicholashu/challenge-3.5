@@ -18,6 +18,12 @@ const informationPage = async ({ page = 1 }: { page: number }) => {
   }
 
   const initialData = await fetchRickData({ page });
+  const totalPages = initialData.characters.info.pages;
+
+  // Redirect to page 1 if requested page doesn't exist
+  if (page < 1 || page > totalPages) {
+    redirect("/information/1");
+  }
 
   return <PageContent initialData={initialData} page={page} />;
 };

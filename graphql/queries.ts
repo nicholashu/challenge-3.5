@@ -5,6 +5,7 @@ export const getAllRickData = gql`
     characters(page: $page, filter: { name: "rick" }) {
       info {
         count
+        pages
       }
       results {
         id
