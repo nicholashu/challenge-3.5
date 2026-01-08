@@ -8,6 +8,7 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 
@@ -57,6 +58,7 @@ const Navbar = () => {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-3/4 px-0">
+              <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
               <div className="flex flex-col gap-6 p-4">
                 <h2 className="font-semibold text-lg">ALL THE RICKS!!!</h2>
                 <div className="flex flex-col gap-4">

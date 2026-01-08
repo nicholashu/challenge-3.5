@@ -11,7 +11,7 @@ export default function ProfileBlock() {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <div className="flex h-full w-full items-center justify-center">
+    <div className="flex h-full w-full items-center justify-center p-2">
       <div className="flex max-w-lg w-full flex-col justify-center p-8 gap-4 bg-white">
         {isEditing ? (
           <>
