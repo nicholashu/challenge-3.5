@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/pagination";
 import CharacterCard from "@/components/CharacterCard";
 import CharacterModal from "@/components/CharacterModal";
+import type { RickData } from "@/types/api";
 
 type InformationPageContentProps = {
   initialData: RickData;

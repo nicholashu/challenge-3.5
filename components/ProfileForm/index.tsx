@@ -9,6 +9,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { setAuthCookie } from "@/app/actions/auth";
 
 interface Props {
   onSuccess?: () => void;
@@ -23,9 +24,10 @@ export default function ProfileForm({ onSuccess, onCancel, submitLabel }: Props)
     jobTitle: profile.jobTitle,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      await setAuthCookie();
       setProfile(formData);
       onSuccess?.();
     } catch (error) {
@@ -44,6 +46,7 @@ export default function ProfileForm({ onSuccess, onCancel, submitLabel }: Props)
             onChange={(e) => setFormData({ ...formData, username: e.target.value })}
             placeholder="Enter your username"
             required
+            type="text"
           />
         </Field>
 
@@ -55,6 +58,7 @@ export default function ProfileForm({ onSuccess, onCancel, submitLabel }: Props)
             onChange={(e) => setFormData({ ...formData, jobTitle: e.target.value })}
             placeholder="Enter your job title"
             required
+            type="text"
           />
         </Field>
 

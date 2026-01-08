@@ -4,6 +4,7 @@ import { createContext, useContext, ReactNode, useState, useEffect } from "react
 import { useRouter } from "next/navigation";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Spinner } from "@/components/ui/spinner";
+import { removeAuthCookie } from "@/app/actions/auth";
 export interface UserProfile {
   username: string;
   jobTitle: string;
@@ -37,7 +38,8 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   const isComplete = Boolean(profile.username && profile.jobTitle);
 
-  const signOut = () => {
+  const signOut = async () => {
+    await removeAuthCookie();
     localStorage.removeItem("user-profile");
     setProfile({ username: "", jobTitle: "" });
     router.push("/");
