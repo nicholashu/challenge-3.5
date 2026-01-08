@@ -20,7 +20,7 @@ export default function ProfileBlock() {
               Update your information below
             </p>
             <ProfileForm
-              onSubmit={() => setIsEditing(false)}
+              onSuccess={() => setIsEditing(false)}
               onCancel={() => setIsEditing(false)}
               submitLabel="Save Changes"
             />

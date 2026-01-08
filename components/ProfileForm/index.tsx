@@ -11,12 +11,12 @@ import {
 import { Input } from "@/components/ui/input";
 
 interface Props {
-  onSubmit?: () => void;
+  onSuccess?: () => void;
   onCancel?: () => void;
   submitLabel?: string;
 }
 
-export default function ProfileForm({ onSubmit, onCancel, submitLabel }: Props) {
+export default function ProfileForm({ onSuccess, onCancel, submitLabel }: Props) {
   const { profile, setProfile } = useUser();
   const [formData, setFormData] = useState({
     username: profile.username,
@@ -25,8 +25,12 @@ export default function ProfileForm({ onSubmit, onCancel, submitLabel }: Props) 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setProfile(formData);
-    onSubmit?.();
+    try {
+      setProfile(formData);
+      onSuccess?.();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, ReactNode, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Spinner } from "@/components/ui/spinner";
 export interface UserProfile {
@@ -12,11 +13,13 @@ interface UserContextType {
   profile: UserProfile;
   setProfile: (profile: UserProfile | ((prev: UserProfile) => UserProfile)) => void;
   isComplete: boolean;
+  signOut: () => void;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function UserProvider({ children }: { children: ReactNode }) {
+  const router = useRouter();
   const [initialized, setInitialized] = useState(false);
   const [profile, setProfile] = useLocalStorage<UserProfile>("user-profile", {
     username: "",
@@ -34,8 +37,14 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   const isComplete = Boolean(profile.username && profile.jobTitle);
 
+  const signOut = () => {
+    localStorage.removeItem("user-profile");
+    setProfile({ username: "", jobTitle: "" });
+    router.push("/");
+  };
+
   return (
-    <UserContext.Provider value={{ profile, setProfile, isComplete }}>
+    <UserContext.Provider value={{ profile, setProfile, isComplete, signOut }}>
       {children}
     </UserContext.Provider>
   );

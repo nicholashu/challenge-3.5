@@ -1,7 +1,13 @@
 import AuthGate from "./AuthGate";
+import Navbar from "@/components/Navbar";
 
 const AuthenticatedLayout = ({ children }: { children: React.ReactNode }) => {
-  return <AuthGate>{children}</AuthGate>;
+  return (
+    <AuthGate>
+      <Navbar />
+      {children}
+    </AuthGate>
+  );
 };
 
 export const revalidate = false;
