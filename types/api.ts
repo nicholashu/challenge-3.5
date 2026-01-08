@@ -1,5 +1,6 @@
+import type { Character } from "./character";
 
-type RickData = {
+export type RickData = {
   characters: {
     __typename: string;
     info: {

@@ -20,7 +20,7 @@ type ClickableCardProps = React.ComponentProps<"div"> & {
 };
 
 function ClickableCard({ className, onClick, onKeyDown, ...props }: ClickableCardProps) {
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       onClick?.(e);

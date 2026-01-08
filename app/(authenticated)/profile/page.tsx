@@ -1,7 +1,7 @@
 import ProfileBlock from "@/components/ProfileBlock";
 
 export const metadata = {
-  title: "Profile Page",
+  title: "Profile",
   description: "User profile page",
 };
 

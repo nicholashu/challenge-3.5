@@ -10,6 +10,7 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
+import type { Character } from "@/types/character";
 
 type CharacterModalProps = {
   character: Character | null;

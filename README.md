@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Next.js application with user authentication, GraphQL integration, and paginated data display.
+
+**Challenge Version:** 3.5
+
+## Tech Stack
+
+- **Framework:** Next.js 16.1.1 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **UI Components:** Radix UI primitives (shadcn/ui pattern)
+- **GraphQL:** Apollo Client 4.0
+- **State Management:** React Context API + localStorage
+- **Data Persistence:** localStorage
+
+## Features
+
+### 1. User Authentication Flow
+- Blocking landing page requires username and job title before accessing any content
+- Data persists across browser sessions via localStorage
+- Users can view and edit their profile at any time via the Profile page
+- Hydration-safe auth check prevents flash of unauthenticated content
+
+### 2. GraphQL Data Integration
+- Queries the public [Rick and Morty API](https://rickandmortyapi.com/graphql)
+- Displays character data with images
+- Protected route ensures data is only accessible after authentication
+
+### 3. Paginated Information Page
+- Server-side pagination with 20 items per page
+- Direct URL access to any page (`/information/1`, `/information/2`, etc.)
+- Custom pagination component with ellipsis for large page counts
+- Click any character to view details in a modal dialog
+
+## Project Structure
+
+```
+app/
+├── (authenticated)/         # Protected route group
+│   ├── AuthGate.tsx         # Client-side auth guard
+│   ├── layout.tsx           # Authenticated layout with nav
+│   ├── information/         # Paginated character list
+│   │   ├── page.tsx         # Server component with data fetch
+│   │   ├── pageContent.tsx  # Client component with interactivity
+│   │   └── [page]/          # Dynamic pagination routes
+│   └── profile/             # User profile view/edit
+├── actions/                 # Server actions
+│   └── auth.ts              # Auth cookie management
+├── layout.tsx               # Root layout with footer
+├── page.tsx                 # Login/registration (server component)
+└── pageContent.tsx          # Login/registration (client component)
+
+components/
+├── ui/                      # Radix UI primitives
+│   ├── avatar.tsx
+│   ├── badge.tsx
+│   ├── button.tsx
+│   ├── card.tsx
+│   ├── dialog.tsx
+│   ├── field.tsx
+│   ├── input.tsx
+│   ├── label.tsx
+│   ├── pagination.tsx
+│   ├── separator.tsx
+│   ├── sheet.tsx
+│   └── spinner.tsx
+├── CharacterCard/           # Character display card
+├── CharacterModal/          # Character detail modal
+├── Navbar.tsx               # Navigation with mobile menu
+├── ProfileForm/             # Username/job title form
+└── ProfileBlock/            # Profile display/edit container
+
+contexts/
+└── UserContext.tsx          # Auth state management
+
+graphql/
+└── queries.ts               # GraphQL query definitions
+
+lib/
+├── apolloClient.ts          # Apollo Client configuration
+├── rickAPI.ts               # Data fetching utilities
+└── utils.ts                 # Helper functions
+```
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Development Notes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Server Components** handle data fetching for optimal performance
+- **Client Components** manage interactivity (modals, forms, navigation)
+- Route groups `(authenticated)` separate protected from public routes
