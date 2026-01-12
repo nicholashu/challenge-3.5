@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -9,13 +8,13 @@ import { useUser } from "@/contexts/UserContext";
 import ProfileForm from "@/components/ProfileForm";
 
 const PageContent = () => {
-  const router = useRouter();
   const { isComplete, signOut, profile } = useUser();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleOnSuccess = () => {
     setIsSubmitting(true);
-    router.push("/information");
+    // use window.location to avoid slow client-side navigation
+    window.location.assign("/information");
   };
 
   // prevents flashing in the complete screen, after form submission

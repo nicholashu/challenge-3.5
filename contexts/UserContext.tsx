@@ -42,7 +42,8 @@ export function UserProvider({ children }: { children: ReactNode }) {
     await removeAuthCookie();
     localStorage.removeItem("user-profile");
     setProfile({ username: "", jobTitle: "" });
-    router.push("/");
+    // redirect to the home page cleanly
+    window.location.assign("/");
   };
 
   return (
