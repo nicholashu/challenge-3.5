@@ -1,10 +1,13 @@
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 
-const createApolloClient = () => {
-  return new ApolloClient({
-    link: new HttpLink({ uri: "https://rickandmortyapi.com/graphql" }),
-    cache: new InMemoryCache(),
-  });
-};
+let apolloClient: ApolloClient | null = null;
 
-export default createApolloClient;
+export function getApolloClient() {
+  if (!apolloClient) {
+    apolloClient = new ApolloClient({
+      link: new HttpLink({ uri: "https://rickandmortyapi.com/graphql" }),
+      cache: new InMemoryCache(),
+    });
+  }
+  return apolloClient;
+}
